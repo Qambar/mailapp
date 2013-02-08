@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<title><?page_title?>Elexu - Ticket Application<?/?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="shortcut icon" href="<?template?>images/favicon.ico<?/?>" type="image/x-icon" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="<?template?>css/jquery-ui.css<?/?>" />
+		<link rel="stylesheet" type="text/css" href="<?template?>css/atk-main.css<?/?>" />
+		<link rel="stylesheet" type="text/css" href="<?template?>css/atk-custom.css<?/?>" />
+		<?$js_include?>
+		<!--[if IE 8]>
+			<link rel="stylesheet" type="text/css" href="<?template?>css/ie8.css<?/?>"/>
+			<script type="text/javascript" src="<?template?>css/ie8.js<?/?>"></script>
+		<![endif]-->
+		<script type="text/javascript">
+			$(function(){
+				<?$document_ready?>
+			});
+		</script>
+
+		<style type="text/css">
+		.atk-wrapper {
+			min-width: 10px !important;
+		}
+		.header-navigation {
+			list-style: none;
+		}
+		.header-navigation li {
+			display:inline;
+			margin-right: 10px;
+			font-size: 20pt;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="atk-layout" class="atk-wrapper">
+			<div id="header">
+				<?logo?><div  class="ui-widget-header float-left"><a 
+                                    href="<?page?>index<?/?>"><img src="http://elexu.com/pr-templates/default/images/logo.png" /></a></div><?/logo?>
+				<div id="header-right">
+					  <?Menu?>
+		                  <ul class="header-navigation">
+		                     <?Item?>
+		                     <?MenuItem?>
+		                     <li class="<?current?>selected<?/?>"><a href="<?$href?>"><?$label?></a></li>
+		                     <?/MenuItem?>
+		                     <?/Item?>
+		                  </ul>
+		                <?/?>
+					
+				</div>
+			</div>
+			<?$Content?>
+			<div id="atk-footer-guard"></div>
+		</div>
+		
+		<div id="atk-growl-holder" class="atk-growl"></div>
+	</body>
+</html>

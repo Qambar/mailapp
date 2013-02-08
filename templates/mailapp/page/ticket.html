@@ -1,0 +1,119 @@
+
+<style type="text/css">
+	.event-name {
+		
+		font-weight: bold;
+		font-size: 20pt;
+		height: 61px;
+		margin-bottom: 20px;
+		line-height: 52px;
+
+	}
+	.label {
+		float:left;
+		width: 30%;
+		font-weight: bold;
+	}
+	.value {
+		float:left;
+		width: 49%;
+
+	}
+	.attendee-code {
+		float: left;
+		width: 49%;
+	}
+	.ticket-type {
+		float:right;
+		width: 49%;
+	}
+	.ticket-wrapper {
+		border: 1px SOLID #333;
+		padding: 8px;
+		width: 600px;
+		border-radius: 15px;
+		font-size: 14pt;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.clear {
+		clear: both;
+	}
+	.code {
+		margin-left: 420px;
+		position: absolute;
+		text-align: center;
+		
+	}
+	.code .text {
+		margin-top: -15px;
+	}
+	.code > .image > img {
+		width: 150px;
+		/* for firefox, safari, chrome, etc. */
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		
+	}
+	.elexu-logo {
+		float: right;
+	}
+	.sponser {
+		text-align: center;
+	}
+	.sponser-heading {
+		line-height: 45px;
+		width: 269px;
+		float: left;
+	}
+	.sponser-logo {
+		width: 130px;
+		float: left;
+	}
+	.highlight {
+		font-weight: bold;
+	}
+</style>
+
+	<div class="ticket-wrapper">
+		<div class="event-name">
+			Elexu Events - Creative Live 3  <div class="elexu-logo"><img src="<?template?>images/logo.gif<?/?>" alt="" width="163px" /> </div>
+			
+		</div>
+<hr />
+		<div class="label">Name</div>
+		<div class="value"><?name?>Meng<?/?></div>
+
+		
+		<div class="label">Ticket Type</div>
+		<div class="value"><?type?>Free Ticket<?/?></div>
+
+		<div class="label">Venue</div>
+		<div class="value">The Social<br/> 5 Little Portland Street,<br/> London W1W 7JD</div>
+		
+		<div class="label">Date</div>
+		<div class="value">23/02/2013, 06:00pm</div>
+
+		<div class="code">
+			<div class="image">
+				<img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=<?code?>1234<?/?>"  alt="" />
+			</div>
+			<div class="text"><?code?>1234<?/?></div>
+
+		</div>
+
+		<div class="clear"></div>
+
+		<hr />
+		<div class="sponser-heading">
+			<span class="highlight">Photo Booth</span> is sponsored by: 	
+		</div>
+		<div class="sponser-logo">
+			<img src="<?template?>images/media.png<?/?>" alt="" height="45px" />	
+		</div>
+		<div class="clear"></div>
+	</div>
+<script type="text/javascript"> 
+	$('#header').remove();
+	$('#footer').remove();
+</script>
