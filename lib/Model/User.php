@@ -6,12 +6,12 @@ class Model_User extends Model_Table {
     function init(){
         parent::init();
        
-        $this->addField('name');
-        $this->addField('email');
-        $this->addField('type');
+        $this->addField('name')->sortable(true);
+        $this->addField('email')->sortable(true);
+        $this->addField('type')->sortable(true);
 
-        $this->addField('is_sent')->type('boolean');
-        $this->addField('sent_time')->type('datetime')->editable(false);
+        $this->addField('is_sent')->type('boolean')->sortable(true);
+        $this->addField('sent_time')->type('datetime')->editable(false)->sortable(true);
         
     }
 	function sendEmail(){
