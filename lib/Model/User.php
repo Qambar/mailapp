@@ -9,7 +9,31 @@ class Model_User extends Model_Table {
         $this->addField('name');
         $this->addField('email');
         $this->addField('type');
+
+        $this->addField('is_sent')->type('boolean');
+        $this->addField('sent_time')->type('datetime')->editable(false);
         
+    }
+	function sendEmail(){
+		$mail=$this->add('TMail');
+		$mail->loadTemplate($this['type']);
+		$mail->setTag('subject','Elexu Creative Live! Sat 23rd February');
+		$mail->setTag('name',$this['name']);
+		$m=$mail->send($this['email']);
+
+        if($m){
+            $this['is_sent']=true;
+            $this['sent_time']=date('Y-m-d H:i:s');
+            $this->save();
+        }
+
+        return $m;
+	}
+
+    function test(){
+        echo "Sending to ".$this['email'].' type of '.$this['type']."<br>";
+        $this['is_sent']=true;
+        $this->saveAndUnload();
     }
 }
 ?>

@@ -5,12 +5,10 @@ class page_index extends Page {
 		parent::init();
 		$g = $this->add('CRUD');
 
-		
-//		$g->grid->getColumn('name')->makeSortable(); //->makeSortable(array('name', 'email'));
-	//	$g->grid->getColumn('email')->makeSortable();
-
+		$g->setModel('User');
 		
 		//$search->addField("email");
+
 		if (is_object($g->grid)) {
 			$g->grid->addPaginator(15);
 			$g->grid->addQuickSearch( array('name', 'email', 'type') );
@@ -18,22 +16,33 @@ class page_index extends Page {
 			//var_dump($_GET);
 			if ($_GET['SendEmail']) {	
 
+                $g->model->load($_GET['SendEmail'])->sendEmail();
+
+                /*
 				$users = $this->api->db->dsql();
 
 				$userdetail = $users
 								->table('users')
 								->where('id', $_GET['SendEmail'])
-								->get();
+								->getHash();
 				
 				$type 		= $userdetail[0]['type'];
 				$name 		= $userdetail[0]['name'];
 				$email 		= $userdetail[0]['email'];
 				$this->sendMail($type, $name, $email);
+                 */
 				
-				$this->js()->univ()->alert("Mail Sent Successfully to " . $name)->execute();
+				$this->js(null,$g->grid->js()->reload())->univ()->alert("Mail Sent Successfully to " . $g->model['name'])->execute();
 			}
 		}	
-		$g->setModel('users');
+
+
+        $this->add('Button')->set('Send to '.$g->model->count().' emails')->js('click')->univ()->newWindow(
+            $this->api->url('sendemail'),
+            'emails',
+            'width=500,height=300,menubar=0,statusbar=1'
+        );
+
 
 		$f = $this->add('Form');
 		$sendEmailToAllButton = $f->addButton('sendEmailtoAll')->setLabel('Send Email to All');
@@ -67,27 +76,6 @@ class page_index extends Page {
             	
 		}
         	
-	}
-	function sendMail($type, $name, $email) {
-		
-		$mail=$this->add('TMail');
-		$mail->loadTemplate($type);
-		$mail->setTag('subject','Elexu Creative Live! Sat 23rd February');
-		$mail->setTag('name',$name);
-		//$mail->setTag('code',$code);
-		/*
-		$mail->setTag('link',$this->api
-		->getDestinationURL('./ticket',array('code'=>$code))
-		    ->useAbsoluteURL());
-		*/
-
-		//tickets will be generated and links will be sent to user via mail, when the user will click on the 
-		//link he will see the ticket in pdf and he will be able to print it 		
-
-		//$mail->attachFile('ticket.pdf', 'application/pdf');
-		//return true;
-		//uncomment below to activae mail sending again
-		return $mail->send($email);
 	}
 	function defaultTemplate() {
 		return array('page/index');

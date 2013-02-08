@@ -5,7 +5,7 @@ class MailApp extends ApiFrontend {
 		parent::init();
 		//$this->addLayout('Menu');
 
-        $m=$this->add('Menu',null,'Menu','Menu');
+        $this->m=$m=$this->add('Menu',null,'Menu','Menu');
         $m->current_menu_class="current";
         $m->inactive_menu_class="";
        
