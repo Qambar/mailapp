@@ -4,6 +4,11 @@ class MailApp extends ApiFrontend {
 	function init() {
 		parent::init();
 		//$this->addLayout('Menu');
+        $this->add('jUI');
+        $this->add('BasicAuth')
+            ->allow('team','empoweringpeople')
+            ->allow('martin','DrGum')
+            ->check();
 
         $this->m=$m=$this->add('Menu',null,'Menu','Menu');
         $m->current_menu_class="current";

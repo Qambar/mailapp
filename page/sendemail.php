@@ -5,14 +5,18 @@ class page_sendemail extends Page {
 
         $this->api->m->destroy();
         $m=$this->add('Model_User');
+	$m->debug();
 
         $m->setLimit(15);
         $m->addCondition('is_sent',false);
 
+
         $cnt = 0;
         $m->each(function($m) use(&$cnt) {
             $cnt++;
-            $m->test();
+         //  $m->test();
+          $m->sendEmail();
+
         });
 
         $this->add('View')->set('Sent to '.

@@ -15,16 +15,18 @@ class Model_User extends Model_Table {
         
     }
 	function sendEmail(){
+        echo "Sending to ".$this['email'].' type of '.$this['type']."<br>";
 		$mail=$this->add('TMail');
 		$mail->loadTemplate($this['type']);
-		$mail->setTag('subject','Elexu Creative Live! Sat 23rd February');
-		$mail->setTag('name',$this['name']);
+		$mail->setTag('subject', 'Elexu Creative Live - Featuring The Ignition Boys and DJ Sai! Sat 23rd Feb');
+		$mail->setTag('name',trim($this['name']));
 		$m=$mail->send($this['email']);
 
         if($m){
             $this['is_sent']=true;
             $this['sent_time']=date('Y-m-d H:i:s');
-            $this->save();
+            //$this->save();
+            $this->saveAndUnload();
         }
 
         return $m;

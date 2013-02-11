@@ -14,7 +14,7 @@ class page_index extends Page {
 			if ($_GET['SendEmail']) {	
 
                 $g->model->load($_GET['SendEmail'])->sendEmail();
-				$this->js(null,$g->grid->js()->reload())->univ()->alert("Mail Sent Successfully to " . $g->model['name'])->execute();
+				$this->js(null,$g->js()->reload())->univ()->alert("Mail Sent Successfully to " . $g->model['name'])->execute();
 			}
 		}	
 
